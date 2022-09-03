@@ -25,12 +25,8 @@ const url = (id) =>{
     fetch(hablu)
         .then(res => res.json())
         .then(data => displayNews(data))
-    console.log(hablu);
+        console.log(hablu);
 }
-// news url 
-fetch(`https://openapi.programming-hero.com/api/news/category/08`)
-.then(res => res.json())
-.then(data => displayNews(data))
 
 const displayNews = (data) => {
     const container = document.getElementById('container');
@@ -39,18 +35,21 @@ const displayNews = (data) => {
         const div = document.createElement('div');
         div.classList.add('card');
         div.innerHTML = `
-        <img src=${news.image_url} class="card-img-top" alt="...">
+        <img src=${news.image_url} class="card-img-top img-fluid" alt="...">
           <div class="card-body">
             <h5 class="card-title">${news.title}</h5>
             <p class="card-text">${news.details.slice(0, 500)}.....</p>
-            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
             <div class="d-flex">
             <img src="${news.author.img}" class="w-25 h-25 rounded-5" alt="">
             <p>${news.author.name}</p>
+            <i class="fa-thin fa-eye"></i>
+            
           </div>
         `
         container.appendChild(div);
-        console.log(data)
+        const newsLength = document.getElementById('length');
+        newsLength.innerText = `${getNews.length} items found for this category`
+        // console.log();
     })
 }
 
