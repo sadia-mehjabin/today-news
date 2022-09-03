@@ -10,17 +10,23 @@ const displayCatagories = (data) =>{
         const div = document.createElement('div');
         div.classList.add('m-4');
         div.innerHTML = `
-        <button class="btn btn-light" onclick="console.log(${item.category_id})">${item.category_name}</button> 
+        <button class="btn btn-light" onclick="url('${item.category_id}')">${item.category_name}</button> 
         `
         catagory.appendChild(div); 
-        fetch(`https://openapi.programming-hero.com/api/news/category/${item.category_id}`)
-        .then(res => res.json())
-        .then(data => console.log(data))
-
-        
-    })
+    //     fetch(`https://openapi.programming-hero.com/api/news/category/${item.category_id}`)
+    //     .then(res => res.json())
+    //     .then(data =>console.log(data))
+    // })
+})
 }
 
+const url = (id) =>{
+    const hablu = `https://openapi.programming-hero.com/api/news/category/${id}`
+    fetch(hablu)
+        .then(res => res.json())
+        .then(data => displayNews(data))
+    console.log(hablu);
+}
 // news url 
 fetch(`https://openapi.programming-hero.com/api/news/category/08`)
 .then(res => res.json())
@@ -44,13 +50,10 @@ const displayNews = (data) => {
           </div>
         `
         container.appendChild(div);
-        
+        console.log(data)
     })
 }
-// const category = (id) => {
-//     fetch(`https://openapi.programming-hero.com/api/news/category/${data}`)
-//     .then(res => res.json())
-//     .then(data => console.log(data))
-    
-    
-// }
+
+const catagoryNews = () =>{
+
+}
