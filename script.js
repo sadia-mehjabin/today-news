@@ -2,7 +2,9 @@
 fetch('https://openapi.programming-hero.com/api/news/categories')
 .then(res => res.json())
 .then(data => displayCatagories(data))
-
+.catch((error) => {
+    console.log(error)
+  });
 const displayCatagories = (data) =>{
     const catagory = document.getElementById('catagories');
     const getArray = data.data.news_category;
@@ -20,7 +22,9 @@ const url = (id) =>{
     fetch( `https://openapi.programming-hero.com/api/news/category/${id}`)
         .then(res => res.json())
         .then(data => displayNews(data))
-       
+        .catch((error) => {
+            console.log(error)
+          });
 }
 
 const displayNews = (data) => {
